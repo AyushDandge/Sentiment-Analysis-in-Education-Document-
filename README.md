@@ -313,10 +313,3 @@ Student `r@gmail.com` is already enrolled in "Python Programming" (online) and
 5. Log out and log back in as `admin` / `super` to see the admin screens.
 
 
-
-## Credits
-
-Original project: *Design and Deployment of Sentimental Analysis in Education*
-(C# / ASP.NET Web Forms / SQL Server).
-This repository is the same project rebuilt in Python. See
-`CONVERSION_NOTES.md` for a file-by-file map of the conversion.
