@@ -1,0 +1,24 @@
+{# ---------------------------------------------------------------------------
+   Popup messages.
+
+   Replaces the two things the C# used:
+       Response.Write("<script>alert('...');</script>")
+       ScriptManager.RegisterStartupScript(... Swal.fire({...}) ...)
+
+   Both are shown as SweetAlert popups so that every message in the Python
+   version looks the way the newer messages looked in the original.
+   --------------------------------------------------------------------------- #}
+{% if alerts %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        {% for a in alerts %}
+        Swal.fire({
+            title: {{ a.title | tojson }},
+            text: {{ a.text | tojson }},
+            icon: {{ a.icon | tojson }}
+        });
+        {% endfor %}
+    });
+</script>
+{% endif %}

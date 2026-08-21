@@ -1,0 +1,134 @@
+{# templates/admin/master.html  <-  Admin/MasterPage.master
+
+   Same layout as the user master page, but the sidebar has "View User" instead
+   of the course links, and the two info boxes are commented out in the
+   original, so they are absent here too.
+#}
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<title>{% block title %}User{% endblock %}</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+<link href="/static/admin/assets/plugins/morrisjs/morris.css" rel="stylesheet" />
+<!-- Custom Css -->
+<link href="/static/admin/assets/css/main.css" rel="stylesheet">
+
+<link href="/static/admin/assets/css/themes/all-themes.css" rel="stylesheet" />
+
+<link rel="stylesheet" type="text/css" href="/static/admin/engine1/style.css" />
+<script type="text/javascript" src="/static/admin/engine1/jquery.js"></script>
+
+<style>
+    .theme-cyan .color-bg, .theme-cyan .morphsearch.open, .theme-cyan .wizard .steps .current a, .theme-cyan .dropdown-menu li a:hover, .theme-cyan .profile-page .profile-sub-header .box-list ul li a:hover, .theme-cyan .fc .fc-toolbar, .theme-cyan .blog-page .single-blog-post .img-holder .date-box {
+background: linear-gradient(60deg, #09b9ac, #7dd1c1);
+}
+</style>
+{% block head_extra %}{% endblock %}
+</head>
+
+<body class="theme-cyan">
+<!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="preloader">
+            <div class="spinner-layer pl-cyan">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+        <p>Please wait...</p>
+    </div>
+</div>
+<!-- #END# Page Loader -->
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+<!-- #END# Overlay For Sidebars -->
+
+<!-- Top Bar -->
+<nav class="navbar clearHeader">
+    <div class="container-fluid">
+        <div class="navbar-header"> <a href="javascript:void(0);" class="bars"></a> <a class="navbar-brand" href="#">Sentiment</a> </div>
+
+    </div>
+</nav>
+<!-- #Top Bar -->
+<section>
+    <!-- Left Sidebar -->
+    <aside id="leftsidebar" class="sidebar">
+        <!-- User Info -->
+        <div class="user-info">
+            <div class="admin-image"> <img src="/static/admin/Images/home.png" alt=""> </div>
+            <div class="admin-action-info">
+            </div>
+
+        </div>
+        <!-- #User Info -->
+        <!-- Menu -->
+        <div class="menu">
+            <ul class="list">
+                <li class="header">MAIN NAVIGATION</li>
+                <li class="active open"><a href="{{ url_for('admin_home') }}"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
+
+                <li><a href="{{ url_for('admin_view_user') }}"><i class="zmdi zmdi-search"></i><span>View User</span></a></li>
+
+                <li><a href="{{ url_for('logout') }}"><i class="zmdi zmdi-phone"></i><span>LogOut</span></a></li>
+
+            </ul>
+        </div>
+        <!-- #Menu -->
+    </aside>
+    <!-- #END# Left Sidebar -->
+</section>
+
+<section class="content home">
+    <div class="container-fluid">
+        <div class="block-header">
+        </div>
+
+        <div class="row clearfix">
+        </div>
+
+        {% block content %}{% endblock %}
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="copyright">
+                    <p style="color: #FFFFFF; font-weight: bold">Copyright &copy; 2025 <a href="#"></a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="color-bg"></div>
+
+<!-- Jquery Core Js -->
+<script src="/static/admin/assets/bundles/libscripts.bundle.js"></script>
+<script src="/static/admin/assets/bundles/vendorscripts.bundle.js"></script>
+
+<script src="/static/admin/assets/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+<script src="/static/admin/assets/plugins/chartjs/Chart.bundle.min.js"></script>
+
+<script src="/static/admin/assets/bundles/mainscripts.bundle.js"></script>
+<script src="/static/admin/assets/js/pages/charts/sparkline.min.js"></script>
+<script src="/static/admin/assets/js/pages/charts/chartjs.min.js"></script>
+
+<script src="/static/admin/assets/js/pages/index.js"></script>
+
+{% include "_alerts.html" %}
+{% block scripts %}{% endblock %}
+</body>
+
+</html>

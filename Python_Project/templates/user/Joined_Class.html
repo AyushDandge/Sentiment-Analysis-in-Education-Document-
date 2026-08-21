@@ -1,0 +1,117 @@
+{# templates/user/Joined_Class.html  <-  UserNew/Joined_Class.aspx
+
+   In the original the first dropdown had AutoPostBack="true", so choosing
+   Online or Offline reloaded the page and refilled the second dropdown from
+   ddltyp_SelectedIndexChanged. Here the same list is fetched from
+   /UserNew/classes.json without a full page reload.
+
+   The RequiredFieldValidator controls become the `required` attribute plus the
+   server side check in main.py.
+#}
+{% extends "user/master.html" %}
+{% block title %}Join Class{% endblock %}
+
+{% block content %}
+<div class="container">
+     <div class="row">
+         <div class="col-md-7">
+    <div class="card-top"></div>
+    <div class="card">
+        <div class="row" style="padding-left:30px ">
+       <div class="col-md-2"></div>
+     <div class="col-md-8">
+        <h1 class="title" style="text-align:center">Join Class <img id="Image1" style="width:50px;" src="/static/user/Images/studimage.png" /></h1>
+        <div class="col-md-12">
+            <form id="sign_in" method="POST" action="{{ url_for('joined_class') }}">
+
+                <br />
+             <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="zmdi zmdi-account"></i>
+                </span>
+             <div class="form-line">
+
+                    <select id="ddltyp" name="ddltyp" style="height:25px; width:100%;" required>
+                        <option value="Select">Select</option>
+                        <option value="Online">Online</option>
+                        <option value="Offline">Offline</option>
+                    </select>
+
+                 </div>
+                    </div>
+
+
+                 <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="zmdi zmdi-account"></i>
+                </span>
+             <div class="form-line">
+
+                    <select id="ddlclass" name="ddlclass" style="height:25px; width:100%;" required>
+                    </select>
+                    {# The class NAME is what the original stored in Student_Class.class_Name,
+                       so it is carried alongside the id. #}
+                    <input type="hidden" id="ddlclass_text" name="ddlclass_text" />
+
+             </div>
+                    </div>
+
+
+                <div>
+
+                    <div class="text-center">
+
+                         <input type="submit" class="btn btn-raised g-bg-cyan waves-effect" value="Joine" />
+                    </div>
+
+                    <div class="text-center"> <a href="{{ url_for('user_home') }}">Home Page</a></div>
+                  <br />
+
+                        </div>
+            </form>
+        </div>
+         </div>
+            </div>
+        </div>
+             </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Replaces ddltyp_SelectedIndexChanged (the ASP.NET AutoPostBack).
+    var typeSelect = document.getElementById('ddltyp');
+    var classSelect = document.getElementById('ddlclass');
+    var classText = document.getElementById('ddlclass_text');
+
+    function loadClasses() {
+        classSelect.innerHTML = '<option value="0">select</option>';
+        classText.value = '';
+
+        var chosen = typeSelect.value;
+        if (chosen === 'Select' || chosen === '') { return; }
+
+        fetch('{{ url_for("classes_json") }}?classType=' + encodeURIComponent(chosen))
+            .then(function (response) { return response.json(); })
+            .then(function (data) {
+                data.classes.forEach(function (item) {
+                    var option = document.createElement('option');
+                    option.value = item.classID;
+                    option.textContent = item.className;
+                    classSelect.appendChild(option);
+                });
+                syncName();
+            });
+    }
+
+    function syncName() {
+        var selected = classSelect.options[classSelect.selectedIndex];
+        classText.value = selected ? selected.textContent : '';
+    }
+
+    typeSelect.addEventListener('change', loadClasses);
+    classSelect.addEventListener('change', syncName);
+    loadClasses();
+</script>
+{% endblock %}

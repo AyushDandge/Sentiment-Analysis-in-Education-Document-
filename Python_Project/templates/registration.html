@@ -1,0 +1,56 @@
+{# templates/registration.html  <-  registration.aspx #}
+{% extends "master.html" %}
+{% block title %}Registration{% endblock %}
+{% block body_id %}inner_page{% endblock %}
+{% block banner %}{% endblock %}
+
+{% block content %}
+<div class="section margin-top_50" style="background-image: url('/static/images/banner_img.png'); background-size: cover; background-position: center;">
+    <div class="container">
+        <div class="row">
+            <!-- Left side: registration form -->
+            <div class="col-md-6 layout_padding_2">
+                <div class="full">
+                    <div class="heading_main text_align_left">
+                        <h2 class="text-white"><span style="color: #d4a81e">Create an Account</span> Education</h2>
+                    </div>
+                    <div class="full">
+                        <p class="text-white">Join us to enhance your learning experience. Please fill in the details below to create an account.</p>
+                    </div>
+                    <form method="post" action="{{ url_for('registration') }}">
+                        <div class="mb-3">
+                            <label for="txtfull_name" class="form-label text-white">Full Name</label>
+                            <input type="text" id="txtfull_name" name="txtfull_name" class="form-control" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="txtemail" class="form-label text-white">Email Address</label>
+                            <input type="email" id="txtemail" name="txtemail" class="form-control" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="txtmobile" class="form-label text-white">Mobile</label>
+                            <input type="text" id="txtmobile" name="txtmobile" class="form-control" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="txtpassword" class="form-label text-white">Password</label>
+                            <input type="password" id="txtpassword" name="txtpassword" class="form-control" placeholder="Create a password" required />
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <input type="submit" class="btn btn-primary" value="Register" />
+                            <a href="{{ url_for('login') }}" class="text-muted">Already have an account? Login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Right side: image -->
+            <div class="col-md-6">
+                <div class="full">
+                    <img src="/static/images/register_img.png" alt="Education Registration" class="img-fluid" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

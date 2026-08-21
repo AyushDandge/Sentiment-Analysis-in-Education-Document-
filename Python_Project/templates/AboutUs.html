@@ -1,0 +1,102 @@
+{# templates/AboutUs.html  <-  AboutUs.aspx
+
+   AboutUs.aspx was a stand-alone page, not built on the master page, so it is
+   reproduced here as a stand-alone template too.
+#}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentimental Analysis in Education</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Sentiment Analysis Project</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li><a class="nav-link active" href="{{ url_for('default') }}">Home</a></li>
+                    <li><a class="nav-link" href="{{ url_for('about_us') }}">About</a></li>
+
+                    <li><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
+                    <li><a class="nav-link" href="{{ url_for('registration') }}">Registration</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Project Overview Section -->
+    <div id="project-overview" class="section margin-top_50">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="full">
+                        <div class="heading_main text_align_center">
+                            <h2><span>Design and Deployment of Sentimental Analysis in Education</span></h2>
+                        </div>
+                        <div class="full">
+                            <p>The "Design and Deployment of Sentimental Analysis in Education" project aims to enhance the educational experience by leveraging sentiment analysis to evaluate and improve the quality of educational content and interactions. This project integrates advanced sentiment analysis techniques into an educational platform, enabling the collection and analysis of feedback from students, teachers, and other stakeholders.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User and Admin Modules Section -->
+    <div id="user-admin-modules" class="section layout_padding">
+        <div class="container">
+            <div class="row">
+                <!-- User Module -->
+                <div class="col-md-6">
+                    <div class="full">
+                        <div class="heading_main text_align_left">
+                            <h3><span>User Module</span></h3>
+                        </div>
+                        <div class="full">
+                            <p>The User Module allows individuals to register, log in, submit feedback, view sentiment insights, manage their profiles, change passwords, and log out. This module facilitates user engagement by providing a seamless interface for interacting with the sentiment analysis system and accessing personalized feedback insights.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Admin Module -->
+                <div class="col-md-6">
+                    <div class="full">
+                        <div class="heading_main text_align_left">
+                            <h3><span>Admin Module</span></h3>
+                        </div>
+                        <div class="full">
+                            <p>The Admin Module provides a centralized dashboard for administrators to monitor and manage user activity, feedback data, and sentiment analysis results. Administrators can view detailed reports, perform data analysis, and ensure the system&rsquo;s proper functioning by managing content, users, and other system settings.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="section contact_section" style="background:#12385b;">
+        <div class="container">
+
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <a href="#" id="scroll-to-top" class="hvr-radial-out"><i class="fa fa-angle-up"></i></a>
+
+    <!-- JS Files -->
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/custom.js"></script>
+</body>
+
+</html>

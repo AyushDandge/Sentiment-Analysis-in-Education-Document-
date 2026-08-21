@@ -1,0 +1,192 @@
+{# templates/admin/UserHome.html  <-  Admin/UserHome.aspx
+   Admin/UserHome.aspx is byte-for-byte the same as UserNew/UserHome.aspx apart
+   from the master page it uses, so the same markup appears here.
+   The slider, the three feature cards and the marquee are unchanged. #}
+{% extends "admin/master.html" %}
+{% block title %}User{% endblock %}
+
+{% block content %}
+   <style>
+    /* Slider Styles */
+    .simple-slider {
+        width: 100%;
+        height: 400px; /* Fixed height for slider */
+        overflow: hidden;
+        position: relative;
+        margin-bottom: 30px;
+    }
+    .slider-container {
+        display: flex;
+        transition: transform 0.5s ease;
+        height: 100%;
+    }
+    .slide {
+        min-width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensures images cover the area consistently */
+    }
+
+    /* Card Styles */
+    .feature-card {
+        height: 100%;
+        transition: transform 0.3s ease;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    .card-image {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+    }
+
+    .card-header {
+        padding: 15px;
+        background: #3498db;
+        color: white;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .card-button {
+        display: inline-block;
+        padding: 8px 20px;
+        background: #3498db;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        margin-top: 10px;
+        transition: background 0.3s ease;
+    }
+
+    .card-button:hover {
+        background: #2980b9;
+        color: white;
+    }
+    .newCard{
+        margin-top: 100px;
+    }
+
+    /* Marquee Styles */
+    marquee {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+</style>
+
+    <div class="row clearfix newCard">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <!-- Image Slider -->
+                    <div class="simple-slider">
+                        <div class="slider-container">
+                            <div class="slide active">
+                                <img src="/static/admin/images/image22.jpeg" alt="Education Analysis">
+                            </div>
+                            <div class="slide">
+                                <img src="/static/admin/images/image11.jpeg" alt="Student Feedback">
+                            </div>
+                            <div class="slide">
+                                <img src="/static/admin/images/image33.jpeg" alt="Data Insights">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cards Section -->
+                    <div class="row clearfix mt-4">
+                        <!-- Card 1 -->
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="feature-card">
+                                <img src="/static/admin/Images/images88.png" alt="Feedback Analysis" class="card-image" />
+                                <div class="card-header">
+                                    <h3>Feedback Analysis</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p>Analyze student feedback to understand sentiment about courses and teaching methods.</p>
+                                    <a href="#" class="card-button">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="feature-card">
+                                <img src="/static/admin/Images/images99.png" alt="Trend Identification" class="card-image" />
+                                <div class="card-header" style="background: #2ecc71;">
+                                    <h3>Trend Identification</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p>Track sentiment trends over time to measure impact of curriculum changes.</p>
+                                    <a href="#" class="card-button" style="background: #2ecc71;">View Trends</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="feature-card">
+                                <img src="/static/admin/Images/images10.png" alt="Actionable Insights" class="card-image" />
+                                <div class="card-header" style="background: #9b59b6;">
+                                    <h3>Actionable Insights</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p>Generate reports with insights to help make data-driven decisions.</p>
+                                    <a href="#" class="card-button" style="background: #9b59b6;">Get Insights</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Marquee Section -->
+                    <marquee direction="up" scrollamount="3">
+                        <p style="font-weight:bold; font-size: large;">SENTIMENT INFORMATION</p>
+                        <ul style="font-family: 'Times New Roman', Times, serif; font-size: large; font-weight: bold">
+                            <li>Real-time analysis of student feedback</li>
+                            <li>Visual dashboards showing sentiment trends</li>
+                            <li>Automated alerts for negative sentiment</li>
+                            <li>Comparative analysis across courses</li>
+                            <li>Historical data tracking available</li>
+                        </ul>
+                    </marquee>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function updateSlider() {
+            document.querySelector('.slider-container').style.transform =
+                `translateX(-${currentSlide * 100}%)`;
+        }
+
+        // Start slider and set interval
+        updateSlider();
+        setInterval(nextSlide, 3000);
+    </script>
+{% endblock %}

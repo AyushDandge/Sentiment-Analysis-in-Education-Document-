@@ -1,0 +1,36 @@
+{# Draws the "Total Review Analysis" column chart.
+
+   Replaces:
+       <asp:Chart ID="Chart1" DataSourceID="SqlDataSource2">
+           <Series><asp:Series XValueMember="ctype" YValueMembers="count" /></Series>
+       </asp:Chart>
+
+   Chart.bundle.min.js is loaded by user/master.html from the project's own
+   assets folder, so no extra download is needed.
+#}
+<script>
+    (function () {
+        var canvas = document.getElementById('Chart1');
+        if (!canvas || typeof Chart === 'undefined') { return; }
+
+        new Chart(canvas.getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: {{ chart | map(attribute='ctype') | list | tojson }},
+                datasets: [{
+                    label: 'Series1',
+                    // The default colour used by the ASP.NET chart control.
+                    backgroundColor: '#4572A7',
+                    data: {{ chart | map(attribute='count') | list | tojson }}
+                }]
+            },
+            options: {
+                responsive: false,
+                legend: { display: false },
+                scales: {
+                    yAxes: [{ ticks: { beginAtZero: true } }]
+                }
+            }
+        });
+    })();
+</script>

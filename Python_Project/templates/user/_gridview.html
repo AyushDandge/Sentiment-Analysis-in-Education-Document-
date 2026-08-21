@@ -1,0 +1,19 @@
+{# ---------------------------------------------------------------------------
+   Styling shared by the tables that replace asp:GridView.
+
+   These are the styles the GridView emitted from its designer properties:
+       BackColor="White" BorderColor="#336666" BorderWidth="3px"
+       CellPadding="4" GridLines="Horizontal" class="table"
+       HeaderStyle BackColor="#33CCCC" Font-Bold="True" ForeColor="White"
+       RowStyle   BackColor="White" ForeColor="#333333"
+   --------------------------------------------------------------------------- #}
+{% macro grid_open(width='100%') %}
+<table class="table" cellspacing="0" cellpadding="4"
+       style="background-color:White;border-color:#336666;border-width:3px;border-style:None;width:{{ width }};border-collapse:collapse;">
+{% endmacro %}
+
+{% macro grid_header(labels) %}
+    <tr style="background-color:#33CCCC;font-weight:bold;color:White;">
+        {% for label in labels %}<th scope="col">{{ label }}</th>{% endfor %}
+    </tr>
+{% endmacro %}

@@ -1,0 +1,11 @@
+{# templates/user/AnalysisOffline.html  <-  UserNew/AnalysisOffline.aspx #}
+{% extends "user/master.html" %}
+{% block title %}Analysis{% endblock %}
+
+{% block content %}
+{% include "user/_analysis_body.html" %}
+{% endblock %}
+
+{% block scripts %}
+{% include "user/_analysis_chart.html" %}
+{% endblock %}

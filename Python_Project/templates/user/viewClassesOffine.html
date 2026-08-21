@@ -1,0 +1,61 @@
+{# templates/user/viewClassesOffine.html  <-  UserNew/viewClassesOffine.aspx
+
+   The GridView becomes a plain table. The "Rating" asp:Button posted back with
+   the classID as its CommandArgument, so here each row has a tiny form that
+   posts the same classID to this page.
+#}
+{% extends "user/master.html" %}
+{% from "user/_gridview.html" import grid_open, grid_header %}
+{% block title %}Classes Details{% endblock %}
+
+{% block content %}
+     <div class="row" style="padding-left:30px ">
+
+     <div class="col-md-9">
+<div class="card">
+           <div class="card-header">
+             <center><h3>Classes Details</h3></center>
+           </div>
+     <div class="row" style="padding-left:30px ;padding-right:30px" >
+
+     <div class="col-md-12" >
+
+                 <div id="Panel1" style="width:100%;">
+                    {{ grid_open() }}
+                        {{ grid_header(['ID', 'Class Name', 'City', 'Area', 'Rating', 'Analysis']) }}
+                        {% for row in classes %}
+                        <tr style="background-color:White;color:#333333;">
+                            <td>{{ row.classID }}</td>
+                            <td>{{ row.className }}</td>
+                            <td>{{ row.city }}</td>
+                            <td>{{ row.Area }}</td>
+                            <td>
+                                <form method="post" style="display:inline;">
+                                    <input type="hidden" name="classID" value="{{ row.classID }}" />
+                                    <input type="submit" class="btn btn-warning" style="color:white" value="Rating" />
+                                </form>
+                            </td>
+                            <td>
+                                <a href="{{ url_for('analysis_offline', classID=row.classID) }}"
+                                   class="btn btn-warning"
+                                   style="color:White;font-size:x-small;font-weight:bold;">View Analysis</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+
+                      </div>
+              <div class="col-md-5" ></div>
+             <div class="col-md-6" >
+
+            <center>&nbsp; &nbsp; &nbsp; &nbsp; <span id="lblshow" style="font-size:x-large;"></span></center> </div>
+             <div class="col-md-1" ></div>
+
+         </div>
+          <div class="col-md-2" ></div>
+         </div>
+    </div>
+         </div>
+
+         </div>
+{% endblock %}

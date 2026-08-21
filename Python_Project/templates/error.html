@@ -1,0 +1,29 @@
+{# Shown when the application cannot reach the database.
+   The original ASP.NET site displayed the framework's yellow error page here. #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Database problem</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body style="padding-top:60px;">
+    <div class="container">
+        <div class="panel panel-danger">
+            <div class="panel-heading"><h3 class="panel-title">The application could not use the database</h3></div>
+            <div class="panel-body">
+                <p style="font-size:16px;">{{ message }}</p>
+                <hr />
+                <p>Things worth checking:</p>
+                <ol>
+                    <li>SQL Server is running (Services &rarr; SQL Server (MSSQLSERVER)).</li>
+                    <li><code>database/schema.sql</code> has been run once.</li>
+                    <li>The values in your <code>.env</code> file match your server.</li>
+                    <li>The Microsoft ODBC driver is installed.</li>
+                </ol>
+                <a class="btn btn-primary" href="{{ url_for('default') }}">Back to home page</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

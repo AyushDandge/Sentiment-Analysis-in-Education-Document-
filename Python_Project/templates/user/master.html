@@ -1,0 +1,156 @@
+{# ---------------------------------------------------------------------------
+   templates/user/master.html   <-  UserNew/MasterPage.master
+
+   Same theme (theme-cyan), same sidebar, same two info boxes above the content
+   placeholder. asp:ContentPlaceHolder1 becomes {% block content %}.
+   --------------------------------------------------------------------------- #}
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<title>{% block title %}User{% endblock %}</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+<link href="/static/user/assets/plugins/morrisjs/morris.css" rel="stylesheet" />
+<!-- Custom Css -->
+<link href="/static/user/assets/css/main.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link href="/static/user/assets/css/themes/all-themes.css" rel="stylesheet" />
+
+<link rel="stylesheet" type="text/css" href="/static/user/engine1/style.css" />
+<script type="text/javascript" src="/static/user/engine1/jquery.js"></script>
+
+<style>
+    .theme-cyan .color-bg, .theme-cyan .morphsearch.open, .theme-cyan .wizard .steps .current a, .theme-cyan .dropdown-menu li a:hover, .theme-cyan .profile-page .profile-sub-header .box-list ul li a:hover, .theme-cyan .fc .fc-toolbar, .theme-cyan .blog-page .single-blog-post .img-holder .date-box {
+background: linear-gradient(60deg, #09b9ac, #7dd1c1);
+}
+</style>
+{% block head_extra %}{% endblock %}
+</head>
+
+<body class="theme-cyan">
+<!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="preloader">
+            <div class="spinner-layer pl-cyan">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+        <p>Please wait...</p>
+    </div>
+</div>
+<!-- #END# Page Loader -->
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+<!-- #END# Overlay For Sidebars -->
+
+<!-- Top Bar -->
+<nav class="navbar clearHeader">
+    <div class="container-fluid">
+        <div class="navbar-header"> <a href="javascript:void(0);" class="bars"></a> <a class="navbar-brand" href="#">Sentiment</a> </div>
+
+    </div>
+</nav>
+<!-- #Top Bar -->
+<section>
+    <!-- Left Sidebar -->
+    <aside id="leftsidebar" class="sidebar">
+        <!-- User Info -->
+        <div class="user-info">
+            <div class="admin-image"> <img src="/static/user/Images/home.png" alt=""> </div>
+            <div class="admin-action-info">
+            </div>
+
+        </div>
+        <!-- #User Info -->
+        <!-- Menu -->
+        <div class="menu">
+            <ul class="list">
+                <li class="header">MAIN NAVIGATION</li>
+                <li class="active open"><a href="{{ url_for('user_home') }}"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
+
+                <li><a href="{{ url_for('search_online_course') }}"><i class="zmdi zmdi-search"></i><span>Online Course</span></a></li>
+
+                <li><a href="{{ url_for('search_offline_course') }}"><i class="zmdi zmdi-account-o"></i><span>Offline Course</span></a></li>
+
+                <li><a href="{{ url_for('joined_class') }}"><i class="zmdi zmdi-account-o"></i><span>Join Course</span></a></li>
+
+                <li><a href="{{ url_for('logout') }}"><i class="zmdi zmdi-phone"></i><span>LogOut</span></a></li>
+
+            </ul>
+        </div>
+        <!-- #Menu -->
+    </aside>
+    <!-- #END# Left Sidebar -->
+</section>
+
+<section class="content home">
+    <div class="container-fluid">
+        <div class="block-header">
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box-4 hover-zoom-effect">
+                   <div class="icon"> <i class="zmdi"><img id="Image1" style="width:50px;" src="/static/user/Images/locate.png" /></i> </div>
+                    <div class="content">
+                        <h3><a href="{{ url_for('search_online_course') }}">Online Course</a></h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box-4 hover-zoom-effect">
+                    <div class="icon"> <i class="zmdi"><img id="Image4" style="width:50px;" src="/static/user/Images/status.png" /></i> </div>
+                    <div class="content">
+                         <h3><a href="{{ url_for('search_offline_course') }}">Offline Course</a></h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        {% block content %}{% endblock %}
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="copyright">
+                    <p style="color: #FFFFFF; font-weight: bold">Copyright &copy; 2025 <a href="#"></a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="color-bg"></div>
+
+<!-- Jquery Core Js -->
+<script src="/static/user/assets/bundles/libscripts.bundle.js"></script>
+<script src="/static/user/assets/bundles/vendorscripts.bundle.js"></script>
+
+<script src="/static/user/assets/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+<script src="/static/user/assets/plugins/chartjs/Chart.bundle.min.js"></script>
+
+<script src="/static/user/assets/bundles/mainscripts.bundle.js"></script>
+<script src="/static/user/assets/js/pages/charts/sparkline.min.js"></script>
+<script src="/static/user/assets/js/pages/charts/chartjs.min.js"></script>
+
+<script src="/static/user/assets/js/pages/index.js"></script>
+
+{% include "_alerts.html" %}
+{% block scripts %}{% endblock %}
+</body>
+
+</html>

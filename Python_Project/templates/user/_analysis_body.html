@@ -1,0 +1,145 @@
+{# ---------------------------------------------------------------------------
+   Shared body of AnalysisOffline.aspx and AnalysisOnline.aspx.
+
+   The two original pages have identical markup, so the layout lives here once
+   and the two templates below just pass their own data in.
+
+   Label colours follow the original:
+       lblClassName  Purple, bold, larger
+       lblTotalReview  set to Brown in code-behind
+       lblProbability  Red
+       lblStatus       Red / Purple / Green depending on the result
+   --------------------------------------------------------------------------- #}
+{% from "user/_gridview.html" import grid_open, grid_header %}
+
+     <div class="row" style="padding-left:30px ">
+
+     <div class="col-md-9">
+<div class="card">
+    <div class="card-header">
+             <center> <h3> <span id="lblClassName" style="font-weight:bold;font-size:larger;color:Purple;">{{ class_name }}</span></h3> </center>
+
+           </div>
+           <div class="card-header">
+             <center><h3>Na&iuml;ve Bayes Analysis</h3></center>
+           </div>
+     <div class="row" style="padding-left:30px ;padding-right:30px" >
+
+     <div class="col-md-12" >
+
+                 <div id="Panel1" style="width:100%;">
+                    {{ grid_open() }}
+                        {{ grid_header(['Sr.No.', 'Parameters', 'Negative ', 'Neutral', 'Positive',
+                                        'P(Negative)', 'P(Neutral)', 'P(Positive)']) }}
+                        {% for row in rows %}
+                        <tr style="background-color:White;color:#333333;">
+                            <td>{{ loop.index }}</td>
+                            <td>{{ row.rType }}</td>
+                            <td>{{ row.negative }}</td>
+                            <td>{{ row.neutral }}</td>
+                            <td>{{ row.positive }}</td>
+                            <td>{{ '%.2f'|format(row.p_negative|float) }}</td>
+                            <td>{{ '%.2f'|format(row.p_neutral|float) }}</td>
+                            <td>{{ '%.2f'|format(row.p_positive|float) }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+
+                      </div>
+              <div class="col-md-5" ></div>
+             <div class="col-md-6" >
+
+            <center>&nbsp; &nbsp; &nbsp; &nbsp; <span id="lblshow" style="font-size:x-large;"></span></center> </div>
+             <div class="col-md-1" ></div>
+
+         </div>
+
+            <div class="col-md-12">
+             <div class="card">
+                 <center><h3>ANALYSIS</h3></center>
+
+                      <div class="card-body">
+                <div class="form-group">
+                      <center> <h3> <span id="lblTotalReview" style="font-weight:bold;font-size:larger;color:Brown;">{{ total_review }}</span></h3> </center>
+
+                      <center> <h3> <span id="lblProbability" style="font-weight:bold;font-size:larger;color:Red;">{{ probability }}</span></h3> </center>
+                      <center> <h3> <span id="lblStatus" style="font-weight:bold;font-size:larger;color:{{ status_colour }};">{{ status }}</span></h3> </center>
+                </div>
+
+                      </div>
+
+                      </div>
+
+         </div>
+          <div class="col-md-2" ></div>
+         </div>
+    </div>
+
+
+     <div class="card">
+           <div class="card-header">
+             <center><h3>Total Review Analysis</h3></center>
+           </div>
+     <div class="row" style="padding-left:30px ;padding-right:30px" >
+
+     <div class="col-md-12" >
+
+                 <div id="Panel2" style="width:100%;">
+
+                     <center>
+                     {# asp:Chart (System.Web.DataVisualization) drew a column chart of
+                        ctype against count. Chart.js draws the same chart here; it is
+                        already part of the project's own assets folder. #}
+                     <canvas id="Chart1" width="600" height="300"></canvas>
+                     </center>
+                     <span id="Label2">Label</span>
+                      </div>
+              <div class="col-md-5" ></div>
+             <div class="col-md-6" >
+
+            <center>&nbsp; &nbsp; &nbsp; &nbsp; <span id="Label1" style="font-size:x-large;"></span></center> </div>
+             <div class="col-md-1" ></div>
+
+         </div>
+          <div class="col-md-2" ></div>
+         </div>
+
+    </div>
+
+
+         <div class="card" >
+           <div class="card-header">
+             <center><h3>User Review's</h3></center>
+           </div>
+     <div class="row" style="padding-left:30px ; padding-right:30px" >
+
+     <div class="col-md-12" >
+
+                 <div id="Panel3" style="height:500px;width:100%;overflow:auto;">
+                    {{ grid_open() }}
+                        {{ grid_header(['Sr.No.', 'User', 'Comments ']) }}
+                        {% for row in comments %}
+                        <tr style="background-color:White;color:#333333;">
+                            <td>{{ loop.index }}</td>
+                            <td>{{ row.uname }}</td>
+                            <td>{{ row.comment }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+
+                      </div>
+              <div class="col-md-5" ></div>
+             <div class="col-md-6" >
+
+            <center>&nbsp; &nbsp; &nbsp; &nbsp; <span id="Label3" style="font-size:x-large;"></span></center> </div>
+             <div class="col-md-1" ></div>
+
+         </div>
+          <div class="col-md-2" ></div>
+         </div>
+    </div>
+
+
+     </div>
+
+         </div>
