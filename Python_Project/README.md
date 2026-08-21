@@ -1,11 +1,4 @@
-# Design and Deployment of Sentimental Analysis in Education (Python Version)
 
-A Python re-implementation of a college project that was originally written in
-C# with ASP.NET Web Forms. The screens, the workflow, the database and the
-Naive Bayes calculations are the same as the original; only the language and
-the web framework have changed.
-
----
 
 ## Project Description
 
